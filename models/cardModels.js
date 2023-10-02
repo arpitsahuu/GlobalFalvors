@@ -1,0 +1,62 @@
+var mongoose=require("mongoose");
+
+let cardSchema = mongoose.Schema({
+    items:[
+        {
+            name:{
+                type:String,
+                required:true
+            },
+            price:{
+                type:number,
+                required:true,
+                default:0
+            },
+            image:{
+                type:String,
+                required:true
+            },
+            product:{
+                type:mongoose.Schema.Types.ObjectId,
+                ref:"product"
+            }
+        },
+    ],
+    user:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"user"
+    },
+    itemsPrice:{
+        type:Number,
+        default:0,
+        required:true
+    },
+    textPrice:{
+        type:Number,
+        default:0,
+        required:true
+    },
+    shippingPrice:{
+        type:Number,
+        default:0,
+        required:true
+    },
+    totalPrice:{
+        type:Number,
+        default:0,
+        required:true
+    },
+    status:{
+        type:String,
+        emum:["Packaging","Shiping","Delivered"],
+    },
+    payment:{
+        type:String,
+        emum:["Paid","Unpaid"],
+    },
+    address:{
+        type:String
+    }
+});
+
+module.exports = mongoose.model("Order",orderSchema);

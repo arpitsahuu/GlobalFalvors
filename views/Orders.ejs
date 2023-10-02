@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        nav{
+            height: 8%;
+            width: 100%;
+            /* background-color: red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* background-color: #EFEEF4; */
+            /* background-color: #fff; */
+            background-color: #343434;
+            color: #fff;
+            padding: 0 20px;
+            z-index: 99;
+        }
+
+        nav ul {
+            display: flex;
+        }
+        nav ul li{
+            list-style: none;
+            margin: 0 10px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #fff;
+        }
+        nav ul li a{
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        .main{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .card{
+            width: 600px;
+            border-radius: 10px;
+            border: 1px solid #000;
+            margin-top: 15px;
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>logo</ul>
+        <ul class="right-nav">
+            <li><a href="/card"><i class="ri-shopping-cart-line"></i></a></li>
+            <li>
+                <!-- <p class="card-qui">1</p> -->
+                <a href="/profile"><i class="ri-user-3-line"></i></a>
+            </li>
+        </ul>
+    </nav>
+    <div class="main p-5">
+        <% orders.forEach(function(order) { %>
+            <div class="card p-3">
+                <h6 class="text-success fs-3 text-center"><%= order.status %></h6>
+                <p class="m-0 ">Order ID: <%= order._id %> </p>
+                <p class="m">Payment ID: <%= order.paymentId %></p>
+                <h6 class="text-secondary">Order Total:  <%= order.itemsPrice %> rs.</h6>
+                <h6 class="text-secondary">Order Shipingprice:  + <%= order.shippingPrice %> rs.</h6>
+                <h6 class="text-secondary">Order Text :  + <%= order.textPrice %> (18%) rs.</h6>
+                <h6>Total fair: <%= order.amount%> rs.</h6>
+                
+                <h1><%= order.amount %> rs.</h1>   
+                <h4>Order Status: <%= order.orderStatus %></h4>
+                <div class="d-flex  mt-2 pt-3 " style="border-top: 1px solid #878787;">
+                    <button onclick="redirectToaddToPacking('<%= order.id %>')" class="btn btn-primary me-2">Packing</button>
+                    <button onclick="redirectToaddToComplited('<%= order.id %>')" class="btn btn-primary me-2">Delivering</button>
+                    <button onclick="redirectToaddToComplited('<%= order.id %>')" class="btn btn-primary me-2">Complited</button>
+                </div>
+            </div> 
+        <% }); %>
+        
+    </div>
+    <script>
+        function redirectToaddToPacking(id) {
+          window.location.href = "/Orderpaking/" + id;
+        }
+        function redirectToaddToDelivering(id) {
+          console.log(id);
+          window.location.href = "/Orderdelivering/" + id;
+        }
+        function redirectToaddToComplited(id) {
+          console.log(id);
+          window.location.href = "/Ordercomplite/" + id;
+        }
+      </script>
+</body>
+</html>

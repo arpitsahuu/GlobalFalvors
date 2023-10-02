@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/stylesheets/styleprofile.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.0.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+    <div class="main">
+        <div class="container">
+            <!-- <a class="back-btn" href="/"><i class="ri-arrow-drop-left-line"></i>Back</a> -->
+            <div class="profileOuterCircul">
+            <img class="profile-pic" src="/profileimages/<%= user.avatar%>" alt="">
+                <form action="/upload" method="post" enctype="multipart/form-data">
+                    <input class="upload-Img" name="avatar" type="file" />
+                    <button type="submit">Upload</button>
+                </form>
+
+            </div>
+            <div class="optins-list">
+                <div class="option-col-1">
+                    <div onclick="redirectToUpdatePage()" class="adminoptions"><i class="ri-donut-chart-fill"></i><h6>Edit profile</h6> </div>
+                    
+                    <div onclick="redirectToUpdatepasswordPage()" class="adminoptions"><i class="ri-lock-password-fill"></i><h6>Update <br> password</h6></div>
+
+                    <div onclick="redirectToOrders()" class="adminoptions"><i class="ri-settings-2-line"></i><h6>Orders</h6> </i></div>
+                </div> 
+                
+                <div class="option-col-2">
+                    <div onclick="redirectToAddItemPage()" class="adminoptions"><i class="ri-add-circle-fill"></i><h6>Add items</h6></div>
+
+                    <div onclick="redirectToEditItemPage()" class="adminoptions"><i class="ri-add-circle-fill"></i><h6>Edit items</h6></div>
+
+
+                    <div onclick="redirectToLogoutRoute()" class="adminoptions"><i class="ri-logout-circle-line"></i><h6>Logout</h6></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        const profilePic = document.querySelector(".profile-pic");
+        const uploadImg = document.querySelector(".upload-Img");
+        profilePic.addEventListener("click", () => {
+            console.log("hello");
+            uploadImg.click();
+        });
+
+        function redirectToUpdatePage() {
+            window.location.href = '/update';
+        }
+        function redirectToLogoutRoute() {
+            window.location.href = '/logout';
+        }
+        function redirectToUpdatepasswordPage() {
+            window.location.href = '/updatepassword';
+        }
+        function redirectToAddItemPage() {
+            window.location.href = '/add-product';
+        }
+        function redirectToEditItemPage() {
+            window.location.href = '/edit-item';
+        }
+        function redirectToOrders() {
+            window.location.href = '/orders';
+        }
+    </script>
+</body>
+</html>

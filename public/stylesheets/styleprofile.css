@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body{
+    height: 100%;
+    width: 100%;
+}
+.main{
+    height: 100%;
+    width: 100%;
+}
+
+.container{
+    position: relative;
+    height: 100%;
+    width: 100%;
+    background-color: rgb(231, 229, 231);
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+    align-items: center;
+}
+
+.back-btn{
+    position: absolute;
+    top: 5%;
+    left: 5%;
+    text-decoration: none;
+    font-size: 20px;
+    display: flex;
+    align-items:center;
+    color: #000;
+}
+.back-btn i{
+    font-size: 35px;
+}
+
+.profileOuterCircul{
+height: 450px;
+width: 450px;
+border-radius: 50%;
+background-color: transparent;
+border: 80px solid transparent;
+/* margin-top: 100px; */
+/* opacity: 0.5; */
+background: linear-gradient(white, white) padding-box,
+          linear-gradient(to right, rgb(113, 113, 195), rgb(194, 144, 219),rgb(119, 183, 216)) border-box;
+display: flex;          
+flex-direction: column;
+align-items: center;
+}
+
+.profileOuterCircul img{
+    margin-top: 15%;
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.upload-Img{
+    display: none;
+}
+
+.optins-list{
+    margin-top: 20px;
+    /* height: 35%; */
+    /* width: 45%; */
+    background-color: #fff;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 50px;
+}
+.option-col-1{
+    display: flex;
+    margin: 10px 0;
+}
+.option-col-2{
+    display: flex;
+    margin: 10px 0;
+}
+.options{
+    height: 80px;
+    width: 96%;
+    background-color: red;
+    margin: 5px 0;
+    border-radius: 20px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.adminoptions{
+    /* height: 120px; */
+    width: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 20px 20px;
+    margin: 0 10px;
+    /* background: linear-gradient(to right, rgb(162, 162, 234), rgb(226, 192, 244),rgb(169, 218, 243)) border-box; */
+    background-color: rgb(186, 186, 251) ;
+    border-radius: 20px;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+}
+.adminoptions i{
+    font-size: 30px;
+    color: #2d2d2d;
+}
+
+.sub-op{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    font-size: 22px;
+}
+
+.options i{
+    font-size: 30px;
+}

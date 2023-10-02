@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        .signup{
+            z-index: 99;
+            /* height: 50vh;             */
+            width: 40vw;
+            margin-top: 5%;
+        }
+        .signupform{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            
+        }
+        .bg-circle{
+            position: absolute;
+            left: 0;
+            transform: translate(-36%,-60%);
+            height: 600px;
+            width: 600px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 110px solid transparent;
+            opacity: 0.5;
+            background: linear-gradient(white, white) padding-box,
+              linear-gradient(to right, rgb(1, 1, 85), darkorchid,rgb(53, 116, 148)) border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="signinmain d-flex">
+        <div class="bg-circle"></div>
+        <div class="signup">
+            <form action="/signup" method="post" class="signupform">
+                <input type="text" class="form-control mb-3" name="username" id=""
+                placeholder="Username" required>
+                <input type="email" name="email" class="form-control mb-3" id="" placeholder="email" required>
+                <input type="text" name="contact" class="form-control mb-3" placeholder="contact" id="" required>
+                
+                <input type="text" class="form-control mb-3" name="address" id=""
+                placeholder="Full Address" >
+                <input type="password" name="password" id="" aria-describedby="passwordHelpInline" class="form-control mb-2" placeholder="password" required>
+                <div id="passwordHelpBlock" class="form-text" required >
+                    Your password must be 8-20 characters long. <br>
+                </div>
+                <a href="/forgetpassword" class="mb-5">Forget password</a>
+                <button class="btn btn-primary">Register</button>
+            </form>
+        </div>
+        <p class="mt-1">Already have a Account <a href="/signin">Sign in</a></p>
+    </div>
+</body>
+</html>

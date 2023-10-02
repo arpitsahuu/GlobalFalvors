@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title%></title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        nav{
+            height: 8%;
+            width: 100%;
+            /* background-color: red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* background-color: #EFEEF4; */
+            /* background-color: #fff; */
+            background-color: #343434;
+            color: #fff;
+            padding: 0 20px;
+            z-index: 99;
+        }
+
+        nav ul {
+            display: flex;
+        }
+        nav ul li{
+            list-style: none;
+            margin: 0 10px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #fff;
+        }
+        nav ul li a{
+            font-size: 25px;
+            margin-top: 10px;
+        }
+        
+        /* .card-qui{
+            position: relative;
+            left: -52px;
+            background-color: red;
+            border-radius: 50%;
+        } */
+        .img-con{
+            height: 300px;
+            width: 300px;
+            /* background-color: red; */
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .img-con img{
+            height: 100%;
+            object-fit: contain;
+        }
+        .info-con{
+            width: 600px;
+            margin: 40px auto;
+            text-align: center;
+            font-family: 'Montserrat';
+            background-color: rgb(231, 229, 231);
+            padding: 30px 30px;
+            border-radius: 10px;
+
+        }
+        
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <ul>logo</ul>
+        <ul class="right-nav">
+            <li><a href="/card"><i class="ri-shopping-cart-line"></i></a></li>
+            <li>
+                <!-- <p class="card-qui">1</p> -->
+                <a href="/profile"><i class="ri-user-3-line"></i></a>
+            </li>
+        </ul>
+    </nav>
+   <div class="main">
+    <div class="img-con">
+        <img src="/images/productImages/<%= product.image %>" alt="">
+    </div>
+    <div class="info-con">
+        <h6 class="mb-3"> <%= product.type %></h6>
+        <h3 class="mb-1 mt-2"><%= product.categorie %></h3>
+        <h1 class="mb-3 fs-1"><%= product.name %></h1>
+        <h6 class="">Ingredients Use in this <span class=""><%= product.name %></span></h6>
+        <h6 class="mb-3"><%= product.ingredients %></h6>
+        <p class="">product 
+            Discription</p>
+        <p><%= product.discription %></p>
+        <div class="btns d-flex justify-content-center">
+            <h2><%= product.rate %> rs</h2>
+            <button onclick="redirectToaddToCard('<%= product.id %>')" class="btn ms-2 btn-primary">add to card <i class="ri-shopping-cart-line"></i></button>
+        </div>
+    </div>
+   </div> 
+   <script>
+    function redirectToaddToCard(id) {
+        console.log(id);
+        window.location.href = "/addToCard/" + id;
+    }
+   </script>
+</body>
+</html>

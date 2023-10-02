@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
+    
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html, body{
+            height: 100%;
+            width: 100%;
+        }
+        nav{
+            height: 5%;
+            width: 100%;
+            /* background-color: red; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #EFEEF4;
+            padding: 0 20px             ;
+        }
+
+        nav ul {
+            display: flex;
+        }
+        nav ul li{
+            list-style: none;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: #000;
+        }
+        .Container{
+            height: 100%;
+            width: 100%;
+            background-color: #EFEEF4;
+        }
+        .card{
+            height: 94%;
+            width: 70%;
+            background-color: #d6cff8;
+        }
+        
+        /* background-color: #FFB985; */
+        .item{
+            height: 15%;
+            width: 100%;
+            display: flex;
+            border: 2px solid #626262;
+            border-radius: 20px;
+            justify-content: space-between;
+            padding: 2%;
+            margin: 1%;
+        }
+        .right{
+            height: 100%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+        }
+        .quantity{
+            height: 100%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+        }
+        .info{
+            height: 100%;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .totalItem{
+            height: 100%;
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+    </style>
+</head>
+<body>
+   <div class="product-con">
+    <nav class="nav">
+        <h4>Logo</h4>
+        <ul class="right-nav">
+            <li><a href="#"><i class="ri-shopping-cart-line"></i></a></li>
+            <li><img src="" alt=""></li>
+        </ul>
+    </nav>
+    <div class="card">  
+        <!-- <div>
+            <div class="Container">
+                <nav class="nav">
+                  <h4>Logo</h4>
+                  <ul class="right-nav">
+                    <li>
+                      <a href="#"><i class="ri-shopping-cart-line"></i></a>
+                    </li>
+                    <li><img src="" alt="" /></li>
+                  </ul>
+                </nav>
+                <div class=""></div>
+                <div class="row d-flex justify-content-center mt-5">
+                  <div class="info-con">
+                    <div class="card ">
+                      <h5 class="card-header text-center">Confirm Order</h5>
+          
+                      <div class="card-body">
+                        <p class="card-text">Thank you for Ordering our Food</p>
+          
+                        <dl class="row mt-2">
+                          <dt class="col-sm-3">Order ID</dt>
+                          <dd class="col-sm-9" id="orderId">
+                            <%- paymentDetail.orderId %>
+                          </dd>
+          
+                          <dt class="col-sm-3">Currency</dt>
+                          <dd class="col-sm-9"><%- paymentDetail.currency %></dd>
+          
+                          <dt class="col-sm-3">Amount</dt>
+                          <dd class="col-sm-9"><%- paymentDetail.amount/100 %> Rs.</dd>
+                        </dl>
+          
+                        <button
+                          type="submit"
+                          class="btn btn-primary"
+                          onclick="checkout(event)"
+                        >
+                          Checkout
+                        </button>
+                      </div>
+                    </div>
+                    <form id="paymentVerifyForm" action="/payment/verify" method="POST">
+                      <input
+                        name="razorpay_payment_id"
+                        type="hidden"
+                        id="razorpay_payment_id"  
+                      />
+                      <input
+                        name="razorpay_order_id"
+                        type="hidden"
+                        id="razorpay_order_id"
+                      />
+                      <input
+                        name="razorpay_signature"
+                        type="hidden"
+                        id="razorpay_signature"
+                      />
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+              <script>
+                function checkout(event) {
+                  const razorpayKeyId = "<%- razorpayKeyId %>";
+                  const orderId = "<%- JSON.stringify(paymentDetail.orderId) %>";
+                  const options = {
+                    key: razorpayKeyId,
+                    currency: "INR",
+                    name: "<%= user.username%>",
+                    description: "Order Payment",
+                    image:"/profileimages/<%= user.avatar%>",
+                    order_id: JSON.parse(orderId),
+                    handler: function (response) {
+                      document.getElementById("razorpay_payment_id").value =
+                        response.razorpay_payment_id;
+                      document.getElementById("razorpay_order_id").value =
+                        response.razorpay_order_id;
+                      document.getElementById("razorpay_signature").value =
+                        response.razorpay_signature;
+                      document.getElementById("paymentVerifyForm").submit();
+                    },
+                    modal: {
+                      ondismiss: function () {
+                        alert(`Payment Failed`);
+                      },
+                    },
+                    theme: {
+                      color: "#22527b",
+                    },
+                  };
+                  const razorpay = new Razorpay(options);
+                  razorpay.open();
+                  event.preventDefault();
+                }
+              </script>
+            </body>
+        </div> -->
+
+        <!-- <% const total = 0 ; %>
+        <% user.card.items.forEach(function(item,index) { %>
+            <div class="item">
+                <div class="right">
+                    <img src="/images/productImages/<%= item.image%>" alt="">
+                    <h5><%= item.name%></h5>
+                </div>
+                <div class="quantity">
+                    <div class="in-di">
+                        <button onclick="redirectToincrement('<%= item._id %>')">+</button>
+                        <h6><%= item.quantity %></h6>
+                        <button onclick="redirectTodecrement('<%= item._id %>')">-</button>
+                    </div>
+                    <div class="totalItem">
+                        <% total += <%= item.quantity%> * <%= item.price %> %>
+                        <h4><%= item.quantity%> * <%= item.price %></h4>
+                    </div>
+                </div>
+            </div> 
+        <% }); %> -->
+        <!-- <div class="total">
+            <p>+Shiping 60rs</p>
+            <%<p> 18% GST <%= total - 82% %> </p>%>
+            <h3>Total <%= total %> </h3>
+        </div>   -->
+    </div>
+   </div>
+   <script>
+    function redirectToaddTocrement(id) {
+        console.log(id)
+        window.location.href = '/increment/'+ id ;
+    }
+    function redirectToaddTodecrement(id) {
+        console.log(id)
+        window.location.href = '/decrement/'+ id ;
+    }
+   </script>
+</body>
+</html>
